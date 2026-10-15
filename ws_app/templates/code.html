@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- <p>Отправленное сообщение: <span id="message_placeholder"></span> </p> -->
 </head>
 <body>
+
+    <input id="num1" placeholder="Первый намбер">
+    <input id="num2" placeholder="Второй намбер">
+    <button onclick="sendSum()">Сложить</button>
+
+    <p>Сумма: <span id="result"></span></p>
     <script>
-        let ws = new WEbSocket('ws://localhost:8000/ws/echo');
-        ws.onmessage = (message) => {
-            alert(message.text);
+        let ws = new WebSocket('ws://localhost:8000/ws/echo');
+
+        function sendSum() {
+            let a = document.getElementById('num1').value;
+            let b = document.getElementById('num2').value;
+
+            ws.send(a + '+' + b);
         }
+        // ws.onmessage = (message) => {
+        //     alert(message.data);
+        // }
+        // ws.onopen = () => {
+        //     ws.send("Hello World");
+        // }
     </script>
 </body>
 </html>

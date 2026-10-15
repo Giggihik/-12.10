@@ -11,19 +11,22 @@ import os
 
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
-from . import EchoWebsocketConsumer, path
+from ws_app.websocket_routing import router 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ws.settings')
 
-router = URLRouter(
-    [
-        path('ws/echo', EchoWebsocketConsumer.as_asgi())
-    ]
-)
+# router = URLRouter(
+#     [
+#         path('ws/echo', EchoWebsocketConsumer.as_asgi())
+#     ]
+# )
 django_app = get_asgi_application()
+
 application = ProtocolTypeRouter(
     {
         'http': django_app,
         'websocket': router
     }
 )
+
+#install django, uvicorn, channels
