@@ -12,14 +12,15 @@ import os
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 from ws_app.websocket_routing import router 
+from channels.sessions import SessionMiddlewareStack
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ws.settings')
 
-# router = URLRouter(
-#     [
-#         path('ws/echo', EchoWebsocketConsumer.as_asgi())
-#     ]
-# )
+router = URLRouter(
+    [
+        path('ws/echo', EchoWebsocketConsumer.as_asgi())
+    ]
+)
 django_app = get_asgi_application()
 
 application = ProtocolTypeRouter(
