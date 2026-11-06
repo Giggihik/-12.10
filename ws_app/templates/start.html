@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Запуск таймера</title>
+</head>
+<body>
+    <h1>Запуск таймера</h1>
+    <label>Секунды: <input type="number" id="seconds" value="10" min="1"></label>
+    <button onclick="start()">Старт</button>
+
+    <script>
+        function start() {
+            const seconds = document.getElementById('seconds').value;
+            const roomName = Math.random().toString(36).substring(2, 8); 
+            window.open(`/timer/view/${roomName}/?seconds=${seconds}`, '_blank');
+        }
+    </script>
+</body>
+</html>
